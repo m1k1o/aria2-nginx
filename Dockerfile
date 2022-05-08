@@ -27,13 +27,12 @@ ENV SPLIT 10
 
 RUN apk add --no-cache aria2 supervisor nginx s6
 
+COPY webui /webui
+COPY aria2.conf /conf/aria2.conf.tmpl
+COPY supervisord.conf /conf/supervisord.conf
+COPY nginx.conf /etc/nginx/http.d/default.conf
+COPY start.sh /conf/start.sh
 COPY --from=builder /app/bin/api /conf/api
-
-ADD webui /webui
-ADD aria2.conf /conf/aria2.conf.tmpl
-ADD supervisord.conf /conf/supervisord.conf
-ADD nginx.conf /etc/nginx/http.d/default.conf
-ADD start.sh /conf/start.sh
 
 VOLUME ["/downloads"]
 
