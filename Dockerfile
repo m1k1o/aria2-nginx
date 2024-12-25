@@ -12,7 +12,7 @@ RUN go get -v -t -d .; \
 #
 # STAGE 2: build a small image
 #
-FROM alpine:latest
+FROM alpine:3
 
 ENV PUID 1000
 ENV PGID 1000
